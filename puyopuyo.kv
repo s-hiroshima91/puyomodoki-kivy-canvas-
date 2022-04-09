@@ -1,0 +1,135 @@
+<GameWindowWidget>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: 1, 1, 1
+            Rectangle:
+                pos: 0, 0
+                size: 1080, 1920
+
+            Color:
+                rgb: 0, 0, 0
+            Rectangle:
+                pos: 860, 1200
+                size: 140, 240
+
+            Color:
+                rgb: 0, 0, 0
+            Rectangle:
+                pos: 240, 400
+                size: 600, 1200
+
+            Color:
+                rgb: 0.5, 0.5, 0.5
+            Triangle:
+                points: 150, 300, 250, 350, 250, 250
+
+            Color:
+                rgb: 0.5, 0.5, 0.5
+            Triangle:
+                points: 450, 300, 350, 350, 350, 250
+
+            Color:
+                rgb: 0.5, 0.5, 0.5
+            Triangle:
+                points: 250, 250, 350, 250, 300, 150
+
+            Color:
+                rgb: 0.5, 0.5, 0.5
+            Ellipse:
+                pos: 650, 250
+                size: 100, 100
+
+            Color:
+                rgb: 0.5, 0.5, 0.5
+            Ellipse:
+                pos: 800, 200
+                size: 100, 100
+
+        Button:
+            id: start_btn
+            on_press: app.start_func()
+            pos: 10, 1400
+            size_hint: None, None
+            size: 200, 100
+            text: "START"
+            
+        Button:
+            id: exit_btn
+            on_press: exit()
+            pos: 10, 1200
+            size_hint: None, None
+            size: 200, 100
+            text: "EXIT"
+
+        Button:
+            id: board_btn
+            on_press: app.board_func()
+            pos: 10, 1000
+            size_hint: None, None
+            size: 200, 100
+            text: "keyboad"
+
+        Label:
+#            id: score
+            pos: 860, 800
+            text: root.score
+            color: (0, 0, 0, 1)
+
+<HelpPopup>:
+    title: 'Help'
+    size_hint: None, None
+    size: 400, 600
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            font_name: 'font.ttf'
+            text: '左移動:←キー\n右移動:→キー\n下移動:↓キー\n左回転:Zキー\n右回転:Xキー'
+            id: help_text
+        Button:
+            size_hint_y: None
+            height: 60
+            text: 'Close'
+            on_press:root.dismiss()
+
+<GameOverPopup>:
+    title: 'Game Over'
+    size_hint: None, None
+    size: 400, 600
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            font_name: 'font.ttf'
+            text: 'Game Over\nscore:' + app.gww.score
+            id: go_text
+        Button:
+            size_hint_y: None
+            height: 60
+            text: 'Close'
+            on_press:exit()
+
+<CurrentDropWidget>
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: root.MasterColor
+            Ellipse:
+                pos: root.master_pos
+                size: 100, 100
+
+            Color:
+                rgb: root.SlaveColor
+            Ellipse:
+                pos: root.slave_pos
+                size: 100, 100
+
+<StackDropWidget>
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: root.StackColor
+            Ellipse:
+                pos: root.StackPosition
+                size: 100, 100
